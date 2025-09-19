@@ -17,10 +17,19 @@ host = "${main_domain}"
 [config.env]
 N8N_HOST = "${main_domain}"
 N8N_PORT = "5678"
+N8N_RUNNERS_SECRET = "${n8n_runner_secret}"
+
+PROXY_HOPS = "0"
+N8N_ENCRYPTION_KEY = "${n8n_encryption_key}"
 GENERIC_TIMEZONE = "Europe/Berlin"
+
+POSTGRES_DB = "${postgres_db}"
 POSTGRES_USER = "${postgres_user}"
 POSTGRES_PASSWORD = "${postgres_password}"
-POSTGRES_DB = "${postgres_db}"
-N8N_ENCRYPTION_KEY = "${n8n_encryption_key}"
+
 OLLAMA_HOST = "http://ollama:11434"
-N8N_RUNNERS_SECRET = "${n8n_runner_secret}"
+
+SMTP_HOST = ""
+SMTP_PORT = "587"
+SMTP_USER = ""
+SMTP_PASS = ""
