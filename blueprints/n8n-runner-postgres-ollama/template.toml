@@ -20,7 +20,7 @@ N8N_PORT = "5678"
 N8N_RUNNERS_SECRET = "${n8n_runner_secret}"
 
 PROXY_HOPS = "0"
-N8N_ENCRYPTION_KEY = "${n8n_encryption_key}"
+ENCRYPTION_KEY = "${n8n_encryption_key}"
 GENERIC_TIMEZONE = "Europe/Berlin"
 
 POSTGRES_DB = "${postgres_db}"
