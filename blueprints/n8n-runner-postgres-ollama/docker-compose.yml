@@ -43,10 +43,10 @@ services:
       - QUEUE_BULL_REDIS_HOST=redis
       - QUEUE_BULL_REDIS_PORT=6379
       # Emails
-      - N8N_SMTP_HOST=${SMTP_HOST}
-      - N8N_SMTP_PORT=${SMTP_PORT}
-      - N8N_SMTP_USER=${SMTP_USER}
-      - N8N_SMTP_PASS=${SMTP_PASS}
+      # - N8N_SMTP_HOST=${SMTP_HOST}
+      # - N8N_SMTP_PORT=${SMTP_PORT}
+      # - N8N_SMTP_USER=${SMTP_USER}
+      # - N8N_SMTP_PASS=${SMTP_PASS}
     volumes:
       - n8n_data:/home/node/.n8n
     depends_on:
@@ -74,7 +74,7 @@ services:
       - N8N_SECURE_COOKIE=true
       - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
       - N8N_BLOCK_ENV_ACCESS_IN_NODE=true
-      - N8N_PROXY_HOPS=1
+      - N8N_PROXY_HOPS=${PROXY_HOPS}
       - WEBHOOK_URL=https://${N8N_HOST}/
       - GENERIC_TIMEZONE=${GENERIC_TIMEZONE}
       - QUEUE_BULL_REDIS_HOST=redis
