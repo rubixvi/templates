@@ -97,7 +97,6 @@ services:
 
   ollama:
     image: ollama/ollama:latest
-    container_name: ollama
     restart: unless-stopped
     volumes:
       - ollama_storage:/home/node/.ollama
