@@ -19,8 +19,8 @@ services:
       - twenty-docker-data:/app/docker-data
     environment:
       PORT: 3000
-      SERVER_URL: https://${TWENTY_HOST}
-      FRONT_BASE_URL: https://${TWENTY_HOST}
+      SERVER_URL: ${HTTP_PROTOCOL}://${TWENTY_HOST}
+      FRONT_BASE_URL: ${HTTP_PROTOCOL}://${TWENTY_HOST}
 
       PG_DATABASE_URL: postgres://${DB_USER}:${DB_PASSWORD}@twenty-postgres:5432/twenty
       ENABLE_DB_MIGRATIONS: "true"
@@ -42,7 +42,8 @@ services:
       test: ["CMD", "curl", "-f", "http://127.0.0.1:3000/healthz"]
       interval: 5s
       timeout: 5s
-      retries: 10
+      retries: 30
+      start_period: 30s
     restart: always
 
   twenty-worker:
@@ -51,8 +52,8 @@ services:
     command: ["yarn", "worker:prod"]
     environment:
       PG_DATABASE_URL: postgres://${DB_USER}:${DB_PASSWORD}@twenty-postgres:5432/twenty
-      SERVER_URL: https://${TWENTY_HOST}
-      FRONT_BASE_URL: https://${TWENTY_HOST}
+      SERVER_URL: ${HTTP_PROTOCOL}://${TWENTY_HOST}
+      FRONT_BASE_URL: ${HTTP_PROTOCOL}://${TWENTY_HOST}
       REDIS_URL: redis://twenty-redis:6379
       ENABLE_DB_MIGRATIONS: "false"
       STORAGE_TYPE: local
