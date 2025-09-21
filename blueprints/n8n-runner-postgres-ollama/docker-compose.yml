@@ -103,7 +103,6 @@ services:
       
   init-ollama:
     image: ollama/ollama:latest
-    container_name: ollama-pull
     volumes:
       - ollama_storage:/home/node/.ollama
     entrypoint: /bin/sh
