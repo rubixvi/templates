@@ -84,7 +84,6 @@ services:
 
   n8n-runner:
     image: n8nio/runners:nightly
-    container_name: n8n-runner
     restart: always
     environment:
       - N8N_RUNNERS_TASK_BROKER_URI=http://n8n:5679
