@@ -48,7 +48,6 @@ POSTGRES_USER="librechat_user"
 POSTGRES_PASSWORD="${postgresql_password}"
 
 # Security & Sessions
-ALLOW_EMAIL_LOGIN="true"
 ALLOW_REGISTRATION="false"
 ALLOW_SOCIAL_LOGIN="false"
 
