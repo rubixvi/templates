@@ -67,27 +67,6 @@ CHUNK_SIZE=1500
 CHUNK_OVERLAP=100
 
 
-# Persistent data volumes
-[[config.mounts]]
-volumeName = "mongo_data"
-mountPath = "/data/db"
-backup = true
-
-[[config.mounts]]
-volumeName = "meili_data"
-mountPath = "/meili_data"
-backup = true
-
-[[config.mounts]]
-volumeName = "postgres_data"
-mountPath = "/var/lib/postgresql/data"
-backup = true
-
-# Application data directories
-[[config.mounts]]
-volumeName = "librechat_data"
-mountPath = "/app"
-backup = true
 
 [[config.mounts]]
 filePath = "librechat.yaml"
