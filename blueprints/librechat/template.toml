@@ -14,6 +14,7 @@ mongo_password = "${password:16}"
 postgresql_password = "${password:16}"
 
 [config]
+version = "1.0.0"
 # Main service domain mapping
 [[config.domains]]
 serviceName = "librechat"
@@ -66,7 +67,6 @@ CHUNK_SIZE=1500
 CHUNK_OVERLAP=100
 
 
-[config.mounts]
 # Persistent data volumes
 [[config.mounts]]
 volumeName = "mongo_data"
