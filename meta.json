@@ -4772,7 +4772,12 @@
       "website": "https://rote.ink",
       "docs": "https://github.com/Rabithua/Rote/tree/main/doc/userguide"
     },
-    "tags": ["notes", "productivity", "postgres", "bun"]
+    "tags": [
+      "notes",
+      "productivity",
+      "postgres",
+      "bun"
+    ]
   },
   {
     "id": "roundcube",
