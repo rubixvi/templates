@@ -15,3 +15,4 @@ Before submitting this PR, please make sure that:
 Close automatically the related issues using the keywords: `closes #ISSUE_NUMBER`, `fixes #ISSUE_NUMBER`, `resolves #ISSUE_NUMBER`
 
 Example: `closes #123`
+
