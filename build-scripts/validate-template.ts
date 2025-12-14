@@ -237,9 +237,6 @@ class TemplateValidator {
           if (domain.port === undefined || domain.port === null) {
             this.error(`domain[${index}]: Missing required field 'port'`);
           }
-          if (!domain.host) {
-            this.error(`domain[${index}]: Missing required field 'host'`);
-          }
 
           // Validate serviceName matches docker-compose.yml services
           if (domain.serviceName && composeServices && composeServices.length > 0) {
