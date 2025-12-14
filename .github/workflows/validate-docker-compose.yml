@@ -192,7 +192,11 @@ jobs:
             exit 0
           fi
           
-          echo "$DIRECTORIES" | while read -r template_dir; do
+          # Convert to array to avoid subshell issues with pipe
+          # This ensures ERROR=1 inside the loop propagates to the parent shell
+          mapfile -t DIRS_ARRAY <<< "$DIRECTORIES"
+          
+          for template_dir in "${DIRS_ARRAY[@]}"; do
             if [ -z "$template_dir" ]; then
               continue
             fi
