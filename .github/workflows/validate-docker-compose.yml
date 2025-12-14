@@ -147,7 +147,11 @@ jobs:
             exit 0
           fi
           
-          echo "$COMPOSE_FILES" | while read -r compose_file; do
+          # Convert to array to avoid subshell issues with pipe
+          # This ensures ERROR=1 inside the loop propagates to the parent shell
+          mapfile -t COMPOSE_ARRAY <<< "$COMPOSE_FILES"
+          
+          for compose_file in "${COMPOSE_ARRAY[@]}"; do
             if [ -z "$compose_file" ]; then
               continue
             fi
