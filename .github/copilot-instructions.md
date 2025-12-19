@@ -30,6 +30,7 @@ Exemplary blueprint: `blueprints/ghost/`—`docker-compose.yml` exposes port 236
 
 1. **Add/Update Template**:
 
+   - **REQUIREMENT**: Service **MUST** be open source. Only add templates for applications with an open-source license (e.g., MIT, Apache, GPL, AGPL). Proprietary or closed-source services are not allowed.
    - Create `blueprints/<id>/` (e.g., `ghost`).
    - Implement `docker-compose.yml` (single service typical; use volumes for persistence).
    - Configure `template.toml`—reference vars in `[config.domains]`, `[config.env]`, `[config.mounts]`.
@@ -45,8 +46,9 @@ No tests in repo—focus on manual validation via scripts and Dokploy deploys. D
 
 ## Conventions and Patterns
 
+- **Open Source Requirement**: **ALL services MUST be open source**. Only applications with open-source licenses (MIT, Apache, GPL, AGPL, etc.) are allowed. Proprietary or closed-source services are strictly prohibited.
 - **Template IDs**: Lowercase, kebab-case (e.g., `active-pieces`); unique across repo—enforced by dedupe script.
-- **Docker Compose**: Minimal—omit `ports` (Dokploy proxies), `restart: unless-stopped`, persistent volumes (e.g., `- db-data:/var/lib/postgresql/data`). Services named after folder (e.g., `ghost` service).
+- **Docker Compose**: Minimal—omit `ports` (Dokploy proxies), persistent volumes (e.g., `- db-data:/var/lib/postgresql/data`). Services named after folder (e.g., `ghost` service).
 - **template.toml**:
   - Variables: `[variables] main_domain = "${domain}"`; use helpers for secrets (`${password:64}`, `${base64:32}`).
   - Domains: `[[config.domains]] serviceName = "<service>" port = 80 host = "${main_domain}"` (path="/" optional).
