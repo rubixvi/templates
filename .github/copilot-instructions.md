@@ -55,7 +55,7 @@ No tests in repo—focus on manual validation via scripts and Dokploy deploys. D
   - JWT helper: `${jwt:secret_var:payload_var}` for auth tokens; payload as JSON string with `exp: ${timestamps:YYYY-MM-DDTHH:mm:ssZ}`.
 - **Meta.json**: Entries as JSON objects; tags array of lowercase strings (e.g., ["monitoring", "database"]); links object with `github`, `website`, `docs`.
 - **No Networks**: Rely on Dokploy's isolated deployments—avoid explicit `networks:`.
-- **Versions**: Pin images to specific versions in `docker-compose.yml` (e.g., `ghost:5.82.0-alpine`); match in `meta.json.version`.
+- **Versions**: Pin images to specific versions in `docker-compose.yml` (e.g., `ghost:5.82.0-alpine`); match in `meta.json.version`. **NEVER use `latest` tag**—it can break templates when upstream images change unexpectedly.
 - **Logos**: SVG preferred; size ~128x128; file name in `meta.json.logo` (e.g., "ghost.svg").
 
 Cross-component: Templates are independent and ship as static blueprints/meta.
