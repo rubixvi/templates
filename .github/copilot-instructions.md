@@ -31,6 +31,7 @@ Exemplary blueprint: `blueprints/ghost/`—`docker-compose.yml` exposes port 236
 1. **Add/Update Template**:
 
    - **REQUIREMENT**: Service **MUST** be open source. Only add templates for applications with an open-source license (e.g., MIT, Apache, GPL, AGPL). Proprietary or closed-source services are not allowed.
+   - **Verify Docker Images**: Before using any Docker image in `docker-compose.yml`, verify it exists using `docker manifest inspect <image:tag>` (e.g., `docker manifest inspect docker.io/bitnami/discourse:3.5.0`). This ensures the image is available and prevents deployment failures.
    - Create `blueprints/<id>/` (e.g., `ghost`).
    - Implement `docker-compose.yml` (single service typical; use volumes for persistence).
    - Configure `template.toml`—reference vars in `[config.domains]`, `[config.env]`, `[config.mounts]`.
@@ -53,11 +54,12 @@ No tests in repo—focus on manual validation via scripts and Dokploy deploys. D
   - Variables: `[variables] main_domain = "${domain}"`; use helpers for secrets (`${password:64}`, `${base64:32}`).
   - Domains: `[[config.domains]] serviceName = "<service>" port = 80 host = "${main_domain}"` (path="/" optional).
   - Env: `[[config.env]]` array of "KEY=VALUE" strings, interpolating vars (e.g., "DB_PASSWORD=${db_pass}").
+  - **URL Variables**: When environment variables require URLs (e.g., `WEB_URL`, `NEXTAUTH_URL`, `PUBLIC_URL`), **always use HTTP by default** (e.g., `"http://${main_domain}"`). HTTPS should only be used if explicitly required by the application or when using a reverse proxy with SSL termination.
   - Mounts: `[[config.mounts]] filePath = "/etc/config" content = """multi-line\ncontent"""`.
   - JWT helper: `${jwt:secret_var:payload_var}` for auth tokens; payload as JSON string with `exp: ${timestamps:YYYY-MM-DDTHH:mm:ssZ}`.
 - **Meta.json**: Entries as JSON objects; tags array of lowercase strings (e.g., ["monitoring", "database"]); links object with `github`, `website`, `docs`.
 - **No Networks**: Rely on Dokploy's isolated deployments—avoid explicit `networks:`.
-- **Versions**: Pin images to specific versions in `docker-compose.yml` (e.g., `ghost:5.82.0-alpine`); match in `meta.json.version`. **NEVER use `latest` tag**—it can break templates when upstream images change unexpectedly.
+- **Versions**: Pin images to specific versions in `docker-compose.yml` (e.g., `ghost:5.82.0-alpine`); match in `meta.json.version`. **NEVER use `latest` tag**—it can break templates when upstream images change unexpectedly. **Always verify image exists** using `docker manifest inspect <image:tag>` before committing.
 - **Logos**: SVG preferred; size ~128x128; file name in `meta.json.logo` (e.g., "ghost.svg").
 
 Cross-component: Templates are independent and ship as static blueprints/meta.
