@@ -145,7 +145,7 @@ services:
       timeout: 3s
       retries: 3
     volumes:
-      - temporal-db-data:/pg/data
+      - temporal-db-data:/var/lib/postgresql/data
     networks:
       - temporal-network
 
