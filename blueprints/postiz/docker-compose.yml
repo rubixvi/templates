@@ -4,9 +4,9 @@ services:
     restart: always
 
     environment:
-      MAIN_URL: "https://${POSTIZ_HOST}"
-      FRONTEND_URL: "https://${POSTIZ_HOST}"
-      NEXT_PUBLIC_BACKEND_URL: "https://${POSTIZ_HOST}/api"
+      MAIN_URL: "http://${POSTIZ_HOST}"
+      FRONTEND_URL: "http://${POSTIZ_HOST}"
+      NEXT_PUBLIC_BACKEND_URL: "http://${POSTIZ_HOST}/api"
 
       JWT_SECRET: ${JWT_SECRET}
       DATABASE_URL: "postgresql://${DB_USER}:${DB_PASSWORD}@postiz-postgres:5432/${DB_NAME}"
