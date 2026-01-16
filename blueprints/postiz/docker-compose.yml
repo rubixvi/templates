@@ -4,9 +4,9 @@ services:
     restart: always
 
     environment:
-      MAIN_URL: "https://${POSTIZ_HOST}"
-      FRONTEND_URL: "https://${POSTIZ_HOST}"
-      NEXT_PUBLIC_BACKEND_URL: "https://${POSTIZ_HOST}/api"
+      MAIN_URL: "http://${POSTIZ_HOST}"
+      FRONTEND_URL: "http://${POSTIZ_HOST}"
+      NEXT_PUBLIC_BACKEND_URL: "http://${POSTIZ_HOST}/api"
 
       JWT_SECRET: ${JWT_SECRET}
       DATABASE_URL: "postgresql://${DB_USER}:${DB_PASSWORD}@postiz-postgres:5432/${DB_NAME}"
@@ -119,7 +119,6 @@ services:
   temporal-elasticsearch:
     image: elasticsearch:7.17.27
     restart: always
-    pull_policy: always
     environment:
       - cluster.routing.allocation.disk.threshold_enabled=true
       - cluster.routing.allocation.disk.watermark.low=512mb
@@ -136,7 +135,6 @@ services:
   temporal-postgresql:
     image: postgres:17-alpine
     restart: always
-    pull_policy: always
     environment:
       POSTGRES_USER: temporal
       POSTGRES_PASSWORD: temporal
@@ -154,7 +152,6 @@ services:
   temporal:
     image: temporalio/auto-setup:1.28.1
     restart: always
-    pull_policy: always
     environment:
       - DB=postgres12
       - DB_PORT=5432
