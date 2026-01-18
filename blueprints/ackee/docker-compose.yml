@@ -2,6 +2,8 @@ services:
   ackee:
     image: electerious/ackee:3.5.1
     restart: unless-stopped
+    ports:
+      - "3000"
     environment:
       - ACKEE_USERNAME=${ACKEE_USERNAME}
       - ACKEE_PASSWORD=${ACKEE_PASSWORD}

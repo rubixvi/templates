@@ -34,12 +34,12 @@ services:
       - MAILER_USER=${MAILER_USER}
       - MAILER_PASSWORD=${MAILER_PASSWORD}
       - MAILER_SENDER=${MAILER_SENDER}
-    volumes:
-      - affine-storage:/root/.affine/storage
-      - affine-config:/root/.affine/config
     depends_on:
       - db
       - redis
+    volumes:
+      - affine-storage:/root/.affine/storage
+      - affine-config:/root/.affine/config
 
   db:
     image: postgres:16-alpine
