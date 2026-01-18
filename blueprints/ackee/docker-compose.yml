@@ -1,23 +1,20 @@
-version: "3"
-
 services:
   ackee:
-    image: electerious/ackee:3.4.2
-    ports:
-      - "3000"
+    image: electerious/ackee:3.5.1
+    restart: always
     environment:
       - ACKEE_USERNAME=${ACKEE_USERNAME}
       - ACKEE_PASSWORD=${ACKEE_PASSWORD}
       - ACKEE_MONGODB=${ACKEE_MONGODB}
   
   mongo:
-    image: mongo:4
+    image: mongo:7
+    restart: always
     environment:
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
       - MONGO_INITDB_ROOT_USERNAME=mongo
     volumes:
       - mongo-data:/data/db
-
 
 volumes:
   mongo-data:
