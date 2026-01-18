@@ -1,8 +1,6 @@
-version: "3.8"
-
 services:
   akaunting:
-    image: docker.io/akaunting/akaunting:latest
+    image: akaunting/akaunting:latest
     restart: unless-stopped
     depends_on:
       akaunting-db:
@@ -34,7 +32,7 @@ services:
       - akaunting-data:/var/www/html
 
   akaunting-db:
-    image: mariadb:10.11
+    image: mariadb:10.11.15
     restart: unless-stopped
     environment:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
