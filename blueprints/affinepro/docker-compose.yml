@@ -1,7 +1,6 @@
-version: "3.8"
 services:
   affinepro:
-    image: ghcr.io/toeverything/affine-graphql:stable-780dd83
+    image: ghcr.io/toeverything/affine-graphql:stable
     restart: unless-stopped
     ports:
       - 3010
@@ -23,7 +22,7 @@ services:
       - redis
 
   migration:
-    image: ghcr.io/toeverything/affine-graphql:stable-780dd83
+    image: ghcr.io/toeverything/affine-graphql:stable
     command: node ./scripts/self-host-predeploy.js
     environment:
       - REDIS_SERVER_HOST=redis
@@ -43,7 +42,7 @@ services:
       - redis
 
   db:
-    image: postgres:15-alpine
+    image: postgres:16-alpine
     restart: unless-stopped
     environment:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
